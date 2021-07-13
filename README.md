@@ -79,11 +79,55 @@ Uma rota vazia será utilizada quando não houver o caminho especificado na URL.
 	Para evitar conflitos de interpretação uma rota vazia pode ser atribuída a apenas uma Controller, do contrário haverá conflito na aplicação para saber qual retorno enviar.
 	De forma análoga, dentro das Controllers apenas uma IActionResult pode receber uma rota vazia.
 
-### IActioResult
+### IActionResult
 
 É o tipo de retorno do Controller através da interface IActionResult.
 
 Há vários tipos de retornos que podem ser enviados como View, JSON etc.
+
+***
+
+## Model
+
+### Funções
+    - Uma Model é uma classe que representa uma entidade do mundo real.
+
+    - No geral, a Model representa uma tabela no banco de dados.
+
+### DTO (Data Transfer Object)
+
+É a classe que unifica um conjunto de informações, de diferentes Models, utilizada para diminuir o número de requisições no servidor.
+
+### Annotations
+
+É um recurso com com as seguintes utilidades:
+
+- Especifica o tipo de dado que a propriedade deve receber.
+- Define o tamanho, padrão e a obrigatoriedade do preenchimento.
+- Podem ser utilizadas para mapear tipos e tamanho das colunas no banco de dados.
+- Permite fazer validação de formulários nas Razor Views.
+- Ao passar por uma validação, garante que as especificações foram atendidas.
+
+Obs.: Não há limite de Annotation que uma propriedade pode ter.
+
+Exemplo de seu uso:
+```C#
+// Annotation sem atributos
+[Required()]
+// Annotation com 1 atributo.
+[Required(ErrorMessage = "O campo Título é obrigatório")]
+// Annotation com 2 atributo.
+[StringLength(60, MinimumLength = 3, ErrorMessage = "O titulo pecisa ter entre 3 e 60 caracteres.")]
+// Propriedade que receberá as Annotations
+public string Titulo { get; set; }
+```
+É possível também fazer sobrecargas em Annotations. (Não é usual, pois não altera as funcionalidades, muda apenas visualmente)
+```C#
+//Sobrecarga
+[RegularExpression(@"^[A-Z]"), Required(ErrorMessage = "Este campo é obrigatório")]
+
+```
+[Referência com os tipos de Annotations existentes](https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations?view=net-5.0)
 
 ***
 
