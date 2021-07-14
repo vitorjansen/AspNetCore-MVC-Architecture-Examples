@@ -23,7 +23,7 @@ namespace MVCArchitecture.Models
         [Display(Name = "Data de Lançamento")] // Usado para exibir um nome formatado, ao invés da propriedade
         public DateTime DataLancamento { get; set; }
 
-        [RegularExpression(@"^[A-Z]"), Required(ErrorMessage = "Este campo é obrigatório")] // Sobrecarga de Annotation
+        [RegularExpression(@"^[A-Z]+[a-zA-Z\u00C0-\u00FF""'\w-]*$"), Required(ErrorMessage = "Este campo é obrigatório")] // Sobrecarga de Annotation
         [StringLength(30, ErrorMessage = "Máximo de 30 caracteres")]
         public string Genero { get; set; }
 

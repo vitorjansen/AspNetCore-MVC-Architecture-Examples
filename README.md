@@ -138,3 +138,48 @@ Nele podemos usar o atributo `ModelState.IsValid` para validar as entradas de da
 
 ***
 
+## View
+
+Convenções
+
+	- Cada Controller deve ter sua subpasta (com o mesmo nome da classse) na pasta de Views.
+
+	- "_" Antes do nome da View, significa que é uma View complementar, ou seja, que trabalha em conjuto com outros arquivos.
+
+### Arquivos da Views
+
+**Raiz da pasta View**
+
+*_ViewStart*: Define as configurações iniciais a serem utilizadas. (Layout, por exemplo). É possível usar instruções como `if-else`. 
+
+*_ViewImports*: Faz a importação dos arquivos necessários como namespaces, tag helpers, tag helpers personalizados etc.
+
+*_CookieConsentPartial*: Gerencia o consentimento da utilização dos cookies.
+
+*_ValidationScriptsPartial*: Inclui arquivos para execução de scripts como javascript.
+
+**Pasta Shared**
+
+São os arquivos que serão reutilizados no projeto inteiro (página de erro e layout, por exemplo).
+
+*_Layout*: Página de Layout. (Estrutura HTML principal).
+
+*Error*: Página de erro.
+
+### Razor Views
+
+O motor de renderização das Views chama-se Razor. Portanto, Razor Views São arquivos HTML mesclados com recursos do Razor.
+
+Além de renderizar as páginas, também ajuda na criação de componentes HTML ([Tag Helpers](#tag-helpers)), tornando mais produtiva a construção das páginas.
+
+### Tag Helpers
+
+São os recursos para geração de HTML.
+
+### View Components
+
+São componentes que podem ser integrados às Views e trabalham de forma independente de um modelo específico e que podem realizar consulta e processamento de dados.
+
+### Partial Views
+
+São pedaços de uma View. Utilizadas para reaproveitar código.
