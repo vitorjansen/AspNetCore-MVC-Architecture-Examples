@@ -129,5 +129,12 @@ public string Titulo { get; set; }
 ```
 [Referência com os tipos de Annotations existentes](https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations?view=net-5.0)
 
+
+### Validações
+
+A Model possui um dicionário chamado `ModelState` que reprenta as informações enviadas no HTTP para serem processadas.
+
+Nele podemos usar o atributo `ModelState.IsValid` para validar as entradas de dados e usar o `ModelState.Values` para capturar cada uma das validações feitas.
+
 ***
 

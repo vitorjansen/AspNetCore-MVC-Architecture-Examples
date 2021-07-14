@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace MVCArchitecture.Controllers
 {
     [Route("")]
-    [Route("rota-home")]
+    [Route("Home")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -20,22 +20,37 @@ namespace MVCArchitecture.Controllers
             _logger = logger;
         }
 
-        [Route("")] // rota vazia.
-        [Route("rota-index")] //sobrecarga de rotas.
-        [Route("rota-index/{id:guid}/numero:int")] // rota com parâmetros e definição do tipo de dado.
-        public IActionResult Index(string id, string numero)
+        [Route("")]
+        [Route("Index")] //sobrecarga de rotas.
+        [Route("Index/{id:guid}")] // rota com parâmetros e definição do tipo de dado.
+        public IActionResult Index(string id)
         {
-            return View(); // Retorno de uma View.
+            // Simulação de um dado recebido pelo usuário para ser validado em Privacy.
+            var filme = new Filme
+            {
+                Titulo = "Um filme",
+                DataLancamento = DateTime.Now,
+                Genero = null,
+                Avaliacao = 10,
+                Valor = 20000
+            };
+
+
+            return RedirectToAction("Privacy", filme); // Retorno IActionResult.
         }
 
-        [Route("privacy")]
-        [Route("rota-privacy")]
-        public IActionResult Privacy()
+        [Route("Privacy")]
+        public IActionResult Privacy(Filme filme)
         {
-            return Json("{'teste':'retornoJson'}"); // Retorno de um JSON.
+            if (ModelState.IsValid) // Validação da Model
+            {
+
+            }
+
+            return View();
         }
 
-        [Route("erro")]
+        [Route("Error")]
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
